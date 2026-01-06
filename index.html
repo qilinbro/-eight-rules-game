@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>清风正道 - 八项规定模拟游戏</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- 开始页面 -->
+        <div id="start-page" class="page active">
+            <div class="start-header">
+                <div class="game-logo">🏛️</div>
+                <h1>清风正道</h1>
+                <p class="subtitle">八项规定模拟体验游戏</p>
+            </div>
+            <div class="start-intro">
+                <p>你即将成为一名基层公务员，在工作中你将面临各种选择。</p>
+                <p>坚守八项规定，赢得群众信任，推动城镇发展，实现仕途进步！</p>
+            </div>
+            <button class="btn-start" onclick="startGame()">开始仕途</button>
+            <button class="btn-continue" id="btn-continue" onclick="continueGame()">继续游戏</button>
+        </div>
+
+        <!-- 主游戏页面 -->
+        <div id="game-page" class="page">
+            <!-- 顶部状态栏 -->
+            <div class="status-bar">
+                <div class="player-info">
+                    <div class="avatar" id="avatar">👤</div>
+                    <div class="player-details">
+                        <div class="player-name" id="player-name">新任科员</div>
+                        <div class="player-position" id="player-position">街道办事处</div>
+                        <div class="scene-tag" id="scene-tag">📍 街道社区</div>
+                    </div>
+                </div>
+                <div class="time-panel">
+                    <div class="current-date">
+                        <span class="date-year" id="current-year">2024</span>年
+                        <span class="date-month" id="current-month">1</span>月
+                    </div>
+                    <div class="tenure-info">
+                        <span class="tenure-icon">📅</span>
+                        <span>任职 <strong id="tenure-months">0</strong> 个月</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 升职进度条 -->
+            <div class="promotion-bar">
+                <div class="promotion-label">
+                    <span>🎯 升职进度</span>
+                    <span id="promotion-progress-text">0/20</span>
+                </div>
+                <div class="promotion-track">
+                    <div class="promotion-fill" id="promotion-fill" style="width: 0%"></div>
+                </div>
+                <div class="streak-badge" id="streak-badge">🔥 连续正确: <span id="streak-count">0</span></div>
+            </div>
+
+            <!-- 属性面板 -->
+            <div class="stats-panel">
+                <div class="stat-row">
+                    <div class="stat-item">
+                        <span class="stat-icon">😊</span>
+                        <span class="stat-name">群众满意</span>
+                        <div class="stat-bar-container">
+                            <div class="stat-bar" id="bar-satisfaction" style="width: 60%"></div>
+                        </div>
+                        <span class="stat-value" id="val-satisfaction">60</span>
+                    </div>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-item">
+                        <span class="stat-icon">🏗️</span>
+                        <span class="stat-name">城镇发展</span>
+                        <div class="stat-bar-container">
+                            <div class="stat-bar bar-development" id="bar-development" style="width: 50%"></div>
+                        </div>
+                        <span class="stat-value" id="val-development">50</span>
+                    </div>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-item">
+                        <span class="stat-icon">⭐</span>
+                        <span class="stat-name">政治声望</span>
+                        <div class="stat-bar-container">
+                            <div class="stat-bar bar-reputation" id="bar-reputation" style="width: 50%"></div>
+                        </div>
+                        <span class="stat-value" id="val-reputation">50</span>
+                    </div>
+                </div>
+                <div class="stat-row">
+                    <div class="stat-item">
+                        <span class="stat-icon">⚠️</span>
+                        <span class="stat-name">廉政风险</span>
+                        <div class="stat-bar-container">
+                            <div class="stat-bar bar-risk" id="bar-risk" style="width: 0%"></div>
+                        </div>
+                        <span class="stat-value" id="val-risk">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 事件卡片区域 -->
+            <div class="event-area">
+                <div class="event-card" id="event-card">
+                    <div class="event-header">
+                        <div class="event-type" id="event-type">日常工作</div>
+                        <div class="event-stars" id="event-stars">⭐☆☆☆☆</div>
+                    </div>
+                    <div class="event-scene" id="event-scene">🏢</div>
+                    <div class="event-title" id="event-title">新的一天开始了</div>
+                    <div class="event-description" id="event-description">
+                        作为新任科员，你需要处理各种事务...
+                    </div>
+                </div>
+
+                <!-- 选项区域 -->
+                <div class="choices-area" id="choices-area">
+                    <div class="choice-btn" onclick="makeChoice(0)">
+                        <span class="choice-text">选项一</span>
+                    </div>
+                    <div class="choice-btn" onclick="makeChoice(1)">
+                        <span class="choice-text">选项二</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 底部菜单 -->
+            <div class="bottom-menu">
+                <div class="menu-item" onclick="showRules()">
+                    <span class="menu-icon">📜</span>
+                    <span>八项规定</span>
+                </div>
+                <div class="menu-item" onclick="showCases()">
+                    <span class="menu-icon">📚</span>
+                    <span>案例库</span>
+                </div>
+                <div class="menu-item" onclick="showAchievements()">
+                    <span class="menu-icon">🏆</span>
+                    <span>成就</span>
+                </div>
+                <div class="menu-item" onclick="showCareer()">
+                    <span class="menu-icon">📈</span>
+                    <span>仕途</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 案例库弹窗 -->
+        <div class="modal" id="cases-modal">
+            <div class="modal-content cases-content">
+                <div class="modal-header">
+                    <h3>📚 真实案例库</h3>
+                    <button class="btn-close" onclick="closeModal('cases-modal')">×</button>
+                </div>
+                <div class="cases-categories" id="cases-categories"></div>
+                <div class="cases-list" id="cases-list"></div>
+            </div>
+        </div>
+
+        <!-- 案例详情弹窗 -->
+        <div class="modal" id="case-detail-modal">
+            <div class="modal-content case-detail-content">
+                <div class="modal-header">
+                    <h3 id="case-detail-title">案例详情</h3>
+                    <button class="btn-close" onclick="closeModal('case-detail-modal')">×</button>
+                </div>
+                <div class="case-detail" id="case-detail"></div>
+            </div>
+        </div>
+
+        <!-- 结果反馈弹窗 -->
+        <div class="modal" id="result-modal">
+            <div class="modal-content result-content">
+                <div class="result-icon" id="result-icon">✓</div>
+                <div class="result-title" id="result-title">选择正确</div>
+                <div class="result-text" id="result-text"></div>
+                <div class="crime-info" id="crime-info" style="display:none;"></div>
+                <div class="result-effects" id="result-effects"></div>
+                <div class="rule-tip" id="rule-tip"></div>
+                <button class="btn-modal" onclick="closeResultAndContinue()">继续</button>
+            </div>
+        </div>
+
+        <!-- 八项规定弹窗 -->
+        <div class="modal" id="rules-modal">
+            <div class="modal-content rules-content">
+                <div class="modal-header">
+                    <h3>📜 中央八项规定</h3>
+                    <button class="btn-close" onclick="closeModal('rules-modal')">×</button>
+                </div>
+                <div class="rules-list" id="rules-list"></div>
+            </div>
+        </div>
+
+        <!-- 成就弹窗 -->
+        <div class="modal" id="achievements-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>🏆 成就系统</h3>
+                    <button class="btn-close" onclick="closeModal('achievements-modal')">×</button>
+                </div>
+                <div class="achievements-list" id="achievements-list"></div>
+            </div>
+        </div>
+
+        <!-- 仕途弹窗 -->
+        <div class="modal" id="career-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>📈 仕途之路</h3>
+                    <button class="btn-close" onclick="closeModal('career-modal')">×</button>
+                </div>
+                <div class="career-path" id="career-path"></div>
+            </div>
+        </div>
+
+        <!-- 升职弹窗 -->
+        <div class="modal" id="promotion-modal">
+            <div class="modal-content promotion-content">
+                <div class="promotion-icon">🎊</div>
+                <h2>恭喜升职！</h2>
+                <div class="promotion-from" id="promotion-from"></div>
+                <div class="promotion-arrow">⬇️</div>
+                <div class="promotion-to" id="promotion-to"></div>
+                <p class="promotion-msg" id="promotion-msg"></p>
+                <button class="btn-modal btn-gold" onclick="closeModal('promotion-modal')">继续奋斗</button>
+            </div>
+        </div>
+
+        <!-- 游戏结束弹窗 -->
+        <div class="modal" id="gameover-modal">
+            <div class="modal-content gameover-content">
+                <div class="gameover-icon" id="gameover-icon">😔</div>
+                <h2 id="gameover-title">游戏结束</h2>
+                <p class="gameover-reason" id="gameover-reason"></p>
+                <div class="gameover-stats" id="gameover-stats"></div>
+                <button class="btn-modal" onclick="restartGame()">重新开始</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
