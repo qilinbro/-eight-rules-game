@@ -15,7 +15,19 @@ const careerLevels = [
     { title: "副处长", position: "市发改委", badge: "🏅", requirement: 100, bgColor: "#4a3d5e", scene: "市行政中心" },
     { title: "处长", position: "市发改委", badge: "🎗", requirement: 140, bgColor: "#4a3d5e", scene: "市行政中心" },
     { title: "副局长", position: "市政府办", badge: "⭐", requirement: 190, bgColor: "#5e3d3d", scene: "市政府大院" },
-    { title: "局长", position: "市政府办", badge: "🌟", requirement: 250, bgColor: "#5e3d3d", scene: "市政府大院" }
+    { title: "局长", position: "市政府办", badge: "🌟", requirement: 250, bgColor: "#5e3d3d", scene: "市政府大院" },
+    { title: "副市长", position: "市政府", badge: "🏛️", requirement: 320, bgColor: "#5e4a3d", scene: "市政府大院" },
+    { title: "市长", position: "市政府", badge: "👔", requirement: 400, bgColor: "#5e4a3d", scene: "市政府大院" },
+    { title: "副厅长", position: "省厅", badge: "🏢", requirement: 500, bgColor: "#4a5e5e", scene: "省政府大楼" },
+    { title: "厅长", position: "省厅", badge: "🎩", requirement: 650, bgColor: "#4a5e5e", scene: "省政府大楼" },
+    { title: "副省长", position: "省政府", badge: "🏆", requirement: 800, bgColor: "#3d5e5e", scene: "省政府大院" },
+    { title: "省长", position: "省政府", badge: "👑", requirement: 1000, bgColor: "#3d5e5e", scene: "省政府大院" },
+    { title: "副国级领导", position: "国务院", badge: "🦅", requirement: 1300, bgColor: "#2e2e4a", scene: "中央机关" },
+    { title: "国务委员", position: "国务院", badge: "🏅", requirement: 1700, bgColor: "#2e2e4a", scene: "中央机关" },
+    { title: "副总理", position: "国务院", badge: "🎖️", requirement: 2200, bgColor: "#1e2e4a", scene: "中央机关" },
+    // { title: "总理", position: "国务院", badge: "🏆", requirement: 3000, bgColor: "#1e2e4a", scene: "中央机关" },
+    // { title: "国家副主席", position: "国家机关", badge: "🦾", requirement: 4000, bgColor: "#1a1a2a", scene: "中央机关" },
+    // { title: "国家主席", position: "国家机关", badge: "🦉", requirement: 6000, bgColor: "#1a1a2a", scene: "中央机关" }
 ];
 
 // 违法定罪类型
@@ -45,7 +57,28 @@ const achievementsList = [
     { id: "clean_10", title: "清正廉洁", desc: "累计10次正确选择", icon: "💎" },
     { id: "promoted", title: "步步高升", desc: "首次获得升职", icon: "📈" },
     { id: "max_satisfaction", title: "人民公仆", desc: "群众满意度达到100", icon: "❤" },
-    { id: "year_passed", title: "岁月如歌", desc: "度过完整的一年", icon: "📅" }
+    { id: "year_passed", title: "岁月如歌", desc: "度过完整的一年", icon: "📅" },
+    { id: "risk_zero", title: "廉洁楷模", desc: "廉政风险降为0", icon: "🛡️" },
+    { id: "risk_100", title: "警钟长鸣", desc: "廉政风险达到100（被查处）", icon: "🚨" },
+    { id: "fail_3", title: "屡教不改", desc: "连续3次错误选择", icon: "💣" },
+    { id: "perfect_year", title: "完美年度", desc: "一年内无一次错误选择", icon: "🏆" },
+    { id: "fail_10", title: "十错俱全", desc: "累计10次错误选择", icon: "🪓" },
+    { id: "fail_30", title: "屡败屡战", desc: "累计30次错误选择", icon: "🥀" },
+    { id: "risk_50", title: "警惕红线", desc: "廉政风险达到50", icon: "⚠️" },
+    { id: "risk_80", title: "高危边缘", desc: "廉政风险达到80", icon: "🔥" },
+    { id: "satisfaction_0", title: "众叛亲离", desc: "群众满意度降为0", icon: "💔" },
+    { id: "reputation_0", title: "声名狼藉", desc: "政治声望降为0", icon: "🕳️" },
+    { id: "dev_100", title: "发展典范", desc: "城镇发展达到100", icon: "🏙️" },
+    { id: "dev_0", title: "停滞不前", desc: "城镇发展降为0", icon: "🪨" },
+    { id: "promotion_3", title: "三级跳", desc: "累计升职3次", icon: "🥉" },
+    { id: "promotion_5", title: "仕途达人", desc: "累计升职5次", icon: "🥈" },
+    { id: "promotion_8", title: "仕途巅峰", desc: "达到最高职位", icon: "🥇" },
+    { id: "event_50", title: "五十不惑", desc: "累计经历50个事件", icon: "🔔" },
+    { id: "event_100", title: "百炼成钢", desc: "累计经历100个事件", icon: "🛠️" },
+    { id: "event_200", title: "千锤百炼", desc: "累计经历200个事件", icon: "🏆" },
+    { id: "streak_5", title: "连对五题", desc: "连续5次正确选择", icon: "🔥" },
+    { id: "streak_10", title: "十连胜", desc: "连续10次正确选择", icon: "🌟" },
+    { id: "streak_20", title: "二十连胜", desc: "连续20次正确选择", icon: "💯" }
 ];
 
 // 事件库
@@ -61,10 +94,10 @@ const events = [
     },
     {
         type: "人情往来", scene: "🎁", title: "企业老板送礼", stars: 4, crime: "bribery",
-        description: "辖区内一位企业老板送来一张5000元购物卡，说是过节心意。",
+        description: "辖区内一位企业老板送来一张充值5W元健身卡，说是过节心意。",
         choices: [
             { text: "当场拒绝并公开批评老板，坚决维护纪律，哪怕对方当场尴尬！", effects: { satisfaction: 15, reputation: 20, risk: -15 }, correct: true },
-            { text: "不仅收下，还主动要求老板再送一台最新款手机，彻底突破底线！", effects: { satisfaction: -20, reputation: -25, risk: 50 }, correct: false }
+            { text: "不仅收下，还主动要求老板再送一台iPhone17promax，彻底突破底线！", effects: { satisfaction: -20, reputation: -25, risk: 50 }, correct: false }
         ],
         rule: "第八条：严格遵守廉洁自律各项规定。"
     },
@@ -97,7 +130,7 @@ const events = [
     },
     {
         type: "用车管理", scene: "🚗", title: "周末用车请求", stars: 3, crime: "embezzlement",
-        description: "周末要参加朋友婚礼，司机说可以开公车送你去。",
+        description: "周末要参加朋友婚礼，司机说可以开奔驰E300L送你去。",
         choices: [
             { text: "坚决拒绝，甚至主动举报司机，绝不让公车私用有任何机会！", effects: { reputation: 12, risk: -8 }, correct: true },
             { text: "不仅用公车，还让司机帮忙跑私事一整天，完全无视规定！", effects: { reputation: -18, risk: 40 }, correct: false }
@@ -167,7 +200,7 @@ const extraEvents = [
         description: "台风即将登陆，你作为负责人需要做决策。",
         choices: [
             { text: "提前部署防灾措施，亲自巡查，保障群众安全！", effects: { satisfaction: 22, reputation: 18, risk: -12 }, correct: true },
-            { text: "无视预警，什么都不做，灾后被追责！", effects: { satisfaction: -28, reputation: -24, risk: 45 }, correct: false }
+            { text: "无视预警，什么都不做，反正我没寄！", effects: { satisfaction: -28, reputation: -24, risk: 45 }, correct: false }
         ],
         rule: "防灾减灾，责任重大。"
     }
@@ -179,7 +212,7 @@ events.push(...extraEvents);
 const moreEvents = [
     {
         type: "项目审批", scene: "📝", title: "工程项目招标", stars: 5, crime: "bribery",
-        description: "一个500万的工程项目招标，有熟人承诺事成后给你10万好处费。",
+        description: "一个500万的工程项目招标，有熟人承诺事成后给你114.514万好处费。",
         choices: [
             { text: "严格按程序办事，公平公正公开招标", effects: { satisfaction: 8, development: 10, reputation: 12, risk: -8 }, correct: true },
             { text: "都是熟人，适当照顾一下", effects: { satisfaction: -15, development: -8, reputation: -20, risk: 35 }, correct: false }
@@ -206,7 +239,7 @@ const moreEvents = [
     },
     {
         type: "土地审批", scene: "🏠", title: "违规用地", stars: 5, crime: "bribery",
-        description: "某企业想在农用地上建厂房，老板私下许诺给你一套房子。",
+        description: "某企业想在农用地上建厂房，老板私下许诺给你一套别墅。",
         choices: [
             { text: "严格按照土地法规办事，不能违规审批", effects: { satisfaction: 10, development: 5, reputation: 15, risk: -10 }, correct: true },
             { text: "经济发展重要，变通一下也行", effects: { satisfaction: -20, development: -10, reputation: -25, risk: 45 }, correct: false }
@@ -262,17 +295,32 @@ function showPage(pageId) {
     document.getElementById(pageId).classList.add('active');
 }
 
+// 游戏模式
+let gameMode = 'simple';
+let complexCurrentEvent = null;
+
 // 开始新游戏
-function startGame() {
-    gameState = {
-        year: 2024, month: 1, satisfaction: 60, development: 50, reputation: 50, risk: 0,
-        level: 0, eventIndex: 0, achievements: [], totalEvents: 0,
-        correctChoices: 0, promotionProgress: 0, consecutiveCorrect: 0
-    };
-    saveGame();
-    showPage('game-page');
-    updateUI();
-    showNextEvent();
+function startGame(mode = 'simple') {
+    gameMode = mode;
+    
+    if (mode === 'complex') {
+        // 初始化复杂游戏
+        window.complexGame.init();
+        showPage('complex-game-page');
+        updateComplexUI();
+        showNextComplexEvent();
+    } else {
+        // 原有简单模式
+        gameState = {
+            year: 2024, month: 1, satisfaction: 60, development: 50, reputation: 50, risk: 0,
+            level: 0, eventIndex: 0, achievements: [], totalEvents: 0,
+            correctChoices: 0, promotionProgress: 0, consecutiveCorrect: 0
+        };
+        saveGame();
+        showPage('game-page');
+        updateUI();
+        showNextEvent();
+    }
 }
 
 // 继续游戏
@@ -327,7 +375,20 @@ function updateUI() {
 
 function updateBackground(level) {
     var gamePage = document.getElementById('game-page');
-    gamePage.style.background = 'linear-gradient(180deg, ' + level.bgColor + ' 0%, #0f172a 100%)';
+    // 主页背景图轮换 imgs 文件夹图片
+    if (!window.bgImgs) {
+        window.bgImgs = [
+            'imgs/152115895791816800_a700x398.jpg',
+            'imgs/img.jpeg',
+            'imgs/img1.jpeg',
+            'imgs/OIP-C.webp'
+        ];
+        window.bgImgIndex = 0;
+    }
+    window.bgImgIndex = (window.bgImgIndex + 1) % window.bgImgs.length;
+    gamePage.style.background = 'url(' + window.bgImgs[window.bgImgIndex] + ') center/cover no-repeat';
+    // 保留原有渐变色可选：可叠加渐变遮罩
+    // gamePage.style.background = 'linear-gradient(180deg, ' + level.bgColor + ' 0%, #0f172a 100%), url(' + window.bgImgs[window.bgImgIndex] + ') center/cover no-repeat';
     var sceneTag = document.getElementById('scene-tag');
     if (sceneTag) sceneTag.textContent = '📍 ' + level.scene;
 }
@@ -498,6 +559,41 @@ function checkAchievements(choice) {
     if (choice.correct && !gameState.achievements.includes('first_right')) unlockAchievement('first_right');
     if (gameState.correctChoices >= 10 && !gameState.achievements.includes('clean_10')) unlockAchievement('clean_10');
     if (gameState.satisfaction >= 100 && !gameState.achievements.includes('max_satisfaction')) unlockAchievement('max_satisfaction');
+    if (gameState.risk === 0 && !gameState.achievements.includes('risk_zero')) unlockAchievement('risk_zero');
+    if (gameState.risk >= 100 && !gameState.achievements.includes('risk_100')) unlockAchievement('risk_100');
+    if (!choice.correct) {
+        gameState._failStreak = (gameState._failStreak || 0) + 1;
+        if (gameState._failStreak >= 3 && !gameState.achievements.includes('fail_3')) unlockAchievement('fail_3');
+        if ((gameState._failTotal = (gameState._failTotal || 0) + 1) === 10 && !gameState.achievements.includes('fail_10')) unlockAchievement('fail_10');
+        if (gameState._failTotal === 30 && !gameState.achievements.includes('fail_30')) unlockAchievement('fail_30');
+    } else {
+        gameState._failStreak = 0;
+    }
+    // 完美年度：一年内无一次错误选择
+    if (gameState.month === 1 && gameState.year > 2024 && (gameState._perfectYear || 0) === 12 && !gameState.achievements.includes('perfect_year')) {
+        unlockAchievement('perfect_year');
+    }
+    if (choice.correct) {
+        gameState._perfectYear = (gameState._perfectYear || 0) + 1;
+    } else {
+        gameState._perfectYear = 0;
+    }
+    // 其它成就
+    if (gameState.risk >= 50 && !gameState.achievements.includes('risk_50')) unlockAchievement('risk_50');
+    if (gameState.risk >= 80 && !gameState.achievements.includes('risk_80')) unlockAchievement('risk_80');
+    if (gameState.satisfaction <= 0 && !gameState.achievements.includes('satisfaction_0')) unlockAchievement('satisfaction_0');
+    if (gameState.reputation <= 0 && !gameState.achievements.includes('reputation_0')) unlockAchievement('reputation_0');
+    if (gameState.development >= 100 && !gameState.achievements.includes('dev_100')) unlockAchievement('dev_100');
+    if (gameState.development <= 0 && !gameState.achievements.includes('dev_0')) unlockAchievement('dev_0');
+    if (gameState.level >= 3 && !gameState.achievements.includes('promotion_3')) unlockAchievement('promotion_3');
+    if (gameState.level >= 5 && !gameState.achievements.includes('promotion_5')) unlockAchievement('promotion_5');
+    if (gameState.level === 8 && !gameState.achievements.includes('promotion_8')) unlockAchievement('promotion_8');
+    if (gameState.totalEvents >= 50 && !gameState.achievements.includes('event_50')) unlockAchievement('event_50');
+    if (gameState.totalEvents >= 100 && !gameState.achievements.includes('event_100')) unlockAchievement('event_100');
+    if (gameState.totalEvents >= 200 && !gameState.achievements.includes('event_200')) unlockAchievement('event_200');
+    if (gameState.consecutiveCorrect >= 5 && !gameState.achievements.includes('streak_5')) unlockAchievement('streak_5');
+    if (gameState.consecutiveCorrect >= 10 && !gameState.achievements.includes('streak_10')) unlockAchievement('streak_10');
+    if (gameState.consecutiveCorrect >= 20 && !gameState.achievements.includes('streak_20')) unlockAchievement('streak_20');
 }
 
 function checkAchievement(id) {
@@ -506,29 +602,54 @@ function checkAchievement(id) {
 
 function unlockAchievement(id) {
     var achievement = achievementsList.find(function(a) { return a.id === id; });
-    if (achievement && !gameState.achievements.includes(id)) gameState.achievements.push(id);
+    if (achievement && !gameState.achievements.includes(id)) {
+        gameState.achievements.push(id);
+        showAchievementTip(achievement);
+        saveGame && saveGame();
+    }
+}
+
+// 成就弹窗提示
+function showAchievementTip(achievement) {
+    var tip = document.createElement('div');
+    tip.className = 'achievement-tip';
+    tip.innerHTML = '<span class="achievement-tip-icon">' + achievement.icon + '</span>' +
+        '<span class="achievement-tip-title">成就达成：</span>' +
+        '<span class="achievement-tip-name">' + achievement.title + '</span>';
+    document.body.appendChild(tip);
+    setTimeout(function() { tip.remove(); }, 1100);
 }
 
 // 检查升职
 function checkPromotion() {
     var nextLevel = gameState.level + 1;
-    if (nextLevel < careerLevels.length && 
-        gameState.promotionProgress >= careerLevels[nextLevel].requirement &&
+    // 满足promotionProgress 或 满意度/发展/声望任一满100即可升职
+    var canPromote = false;
+    if (nextLevel < careerLevels.length) {
+        if (gameState.promotionProgress >= careerLevels[nextLevel].requirement) {
+            canPromote = true;
+        }
+        if (gameState.satisfaction >= 100 || gameState.development >= 100 || gameState.reputation >= 100) {
+            canPromote = true;
+        }
+    }
+    if (canPromote &&
         gameState.risk < 50 && gameState.satisfaction >= 40 && gameState.reputation >= 30) {
-        
         var oldLevel = careerLevels[gameState.level];
         gameState.level = nextLevel;
         var newLevel = careerLevels[gameState.level];
-        
         document.getElementById('promotion-from').textContent = oldLevel.title;
         document.getElementById('promotion-to').textContent = newLevel.badge + ' ' + newLevel.title;
         document.getElementById('promotion-msg').textContent = '调任' + newLevel.position + '，继续为人民服务！';
-        
         setTimeout(function() {
             document.getElementById('promotion-modal').classList.add('active');
         }, 500);
-        
         if (!gameState.achievements.includes('promoted')) unlockAchievement('promoted');
+        // 满意度/发展/声望满100升职后清零
+        if (gameState.satisfaction >= 100) gameState.satisfaction = 10;
+        if (gameState.development >= 100) gameState.development = 10;
+        // 升职时不再清零政治声望
+        gameState.promotionProgress = 0;
     }
 }
 
@@ -568,12 +689,18 @@ function showGameOver(reason, icon) {
         '<div class="gameover-stat"><span>获得成就</span><span>' + gameState.achievements.length + '个</span></div>';
     
     document.getElementById('gameover-modal').classList.add('active');
-    localStorage.removeItem('gameState');
+    // 不再清空成就，成就永久保留
+    // localStorage.removeItem('gameState');
 }
 
 function restartGame() {
     document.getElementById('gameover-modal').classList.remove('active');
-    startGame();
+    // 根据当前游戏模式重新开始
+    if (gameMode === 'complex') {
+        startGame('complex');
+    } else {
+        startGame('simple');
+    }
 }
 
 // 显示八项规定
@@ -623,8 +750,13 @@ function showCareer() {
 
 function closeModal(modalId) { document.getElementById(modalId).classList.remove('active'); }
 function confirmExit() { if (confirm('确定要退出吗？')) { saveGame(); showPage('start-page'); } }
-function saveGame() { localStorage.setItem('gameState', JSON.stringify(gameState)); }
-function loadGame() { var saved = localStorage.getItem('gameState'); if (saved) gameState = JSON.parse(saved); }
+function saveGame() { localStorage.setItem('gameState', JSON.stringify(gameState)); localStorage.setItem('achievements', JSON.stringify(gameState.achievements)); }
+function loadGame() {
+    var saved = localStorage.getItem('gameState');
+    if (saved) gameState = JSON.parse(saved);
+    var ach = localStorage.getItem('achievements');
+    if (ach) gameState.achievements = JSON.parse(ach);
+}
 function checkSavedGame() { if (localStorage.getItem('gameState')) document.getElementById('btn-continue').style.display = 'block'; }
 
 document.addEventListener('DOMContentLoaded', function() { checkSavedGame(); });
@@ -642,6 +774,8 @@ var casesData = {
         { id: "gift", name: "违规收礼", icon: "🎁" }
     ],
     cases: [
+        // 事件机制：每阅读一个案例，廉政风险 risk 轻微减少
+        // 在showCaseDetail中处理
         {
             id: 1, category: "bribery", title: "某县住建局局长受贿案", year: "2023",
             location: "某省某县", position: "住建局局长",
@@ -818,5 +952,356 @@ function showCaseDetail(caseItem) {
         '<div class="case-detail-value">' + caseItem.lesson + '</div>' +
         '</div>';
     
+    // 事件：每阅读一个案例，廉政风险 risk 轻微减少（每次-1，最低为0）
+    if (typeof gameState === 'object' && typeof gameState.risk === 'number') {
+        var oldRisk = gameState.risk;
+        gameState.risk = Math.max(0, gameState.risk - 1);
+        if (gameState.risk !== oldRisk) {
+            updateStatBar('risk', gameState.risk);
+            saveGame && saveGame();
+        }
+    }
+    // 显示提示：已学习案例，廉政风险-1
+    var tipDiv = document.createElement('div');
+    tipDiv.style = 'color:#38a169;text-align:center;font-size:15px;padding:8px 0 0 0;';
+    tipDiv.textContent = '🎉 已学习案例，廉政风险-1';
+    detailDiv.appendChild(tipDiv);
     document.getElementById('case-detail-modal').classList.add('active');
+}
+
+// ========== 复杂游戏模式函数 ==========
+
+// 更新复杂游戏UI
+function updateComplexUI() {
+    const summary = window.complexGame.getSummary();
+    
+    // 更新职务信息
+    document.getElementById('complex-player-name').textContent = summary.level.title;
+    document.getElementById('complex-player-position').textContent = summary.level.position;
+    document.getElementById('complex-avatar').textContent = summary.level.badge;
+    
+    // 更新时间信息
+    document.getElementById('complex-current-year').textContent = summary.time.year;
+    document.getElementById('complex-current-month').textContent = summary.time.month;
+    document.getElementById('complex-total-events').textContent = summary.totalEvents;
+    
+    // 更新升职进度
+    const nextLevel = summary.nextLevel;
+    if (nextLevel) {
+        const progress = Math.min(100, (summary.promotionProgress / nextLevel.requirement) * 100);
+        document.getElementById('complex-promotion-fill').style.width = progress + '%';
+        document.getElementById('complex-promotion-progress-text').textContent = summary.promotionProgress + '/' + nextLevel.requirement;
+    } else {
+        document.getElementById('complex-promotion-fill').style.width = '100%';
+        document.getElementById('complex-promotion-progress-text').textContent = '已达最高';
+    }
+    
+    // 更新连胜计数
+    document.getElementById('complex-streak-count').textContent = window.complexGame.state.consecutiveCorrect;
+    
+    // 更新属性条
+    updateComplexStatBar('satisfaction', summary.stats.satisfaction);
+    updateComplexStatBar('development', summary.stats.development);
+    updateComplexStatBar('reputation', summary.stats.reputation);
+    updateComplexStatBar('risk', summary.stats.risk);
+    
+    // 更新资源信息
+    document.getElementById('complex-money').textContent = formatMoney(summary.resources.money);
+    document.getElementById('complex-staff').textContent = summary.resources.staff + '人';
+    document.getElementById('complex-projects').textContent = summary.resources.projects + '个';
+    
+    // 更新关系网络
+    updateComplexRelationshipBar('mayor', summary.relationships.mayor);
+    updateComplexRelationshipBar('secretary', summary.relationships.secretary);
+    updateComplexRelationshipBar('media', summary.relationships.media);
+    updateComplexRelationshipBar('public', summary.relationships.public);
+    
+    // 更新成就显示
+    updateComplexAchievements(summary.achievements);
+}
+
+function updateComplexStatBar(stat, value) {
+    value = Math.max(0, Math.min(100, value));
+    document.getElementById('complex-bar-' + stat).style.width = value + '%';
+    document.getElementById('complex-val-' + stat).textContent = value;
+}
+
+function updateComplexRelationshipBar(rel, value) {
+    value = Math.max(0, Math.min(100, value));
+    document.getElementById('complex-rel-' + rel).style.width = value + '%';
+    document.getElementById('complex-val-' + rel).textContent = value;
+}
+
+function formatMoney(amount) {
+    if (amount >= 10000) {
+        return (amount / 10000).toFixed(1) + '万';
+    }
+    return amount.toString();
+}
+
+function updateComplexAchievements(achievements) {
+    const display = document.getElementById('complex-achievements-display');
+    if (achievements.length === 0) {
+        display.textContent = '暂无成就';
+    } else {
+        display.innerHTML = achievements.slice(-5).map(ach => `<span class="achievement-badge">${ach}</span>`).join(' ');
+    }
+}
+
+// 显示下一个复杂事件
+function showNextComplexEvent() {
+    complexCurrentEvent = window.complexGame.getRandomEvent();
+    
+    if (!complexCurrentEvent) {
+        console.error('无法获取复杂游戏事件');
+        return;
+    }
+    
+    // 更新事件显示
+    document.getElementById('complex-event-type').textContent = complexCurrentEvent.type;
+    document.getElementById('complex-event-scene').textContent = complexCurrentEvent.scene;
+    document.getElementById('complex-event-title').textContent = complexCurrentEvent.title;
+    document.getElementById('complex-event-description').textContent = complexCurrentEvent.description;
+    
+    // 更新选项
+    const choicesArea = document.getElementById('complex-choices-area');
+    choicesArea.innerHTML = '';
+    
+    // 随机打乱选项顺序
+    const indices = [0, 1];
+    if (complexCurrentEvent.choices.length === 3) indices.push(2);
+    if (Math.random() > 0.5) indices.reverse();
+    
+    indices.forEach((idx) => {
+        if (complexCurrentEvent.choices[idx]) {
+            const choice = complexCurrentEvent.choices[idx];
+            const btn = document.createElement('div');
+            btn.className = 'choice-btn';
+            btn.innerHTML = '<span class="choice-text">' + choice.text + '</span>';
+            btn.onclick = function() { makeComplexChoice(idx); };
+            choicesArea.appendChild(btn);
+        }
+    });
+}
+
+// 处理复杂模式选择
+function makeComplexChoice(choiceIndex) {
+    if (!complexCurrentEvent || !complexCurrentEvent.choices[choiceIndex]) {
+        console.error('无效的选择索引');
+        return;
+    }
+    
+    const choice = complexCurrentEvent.choices[choiceIndex];
+    const endResult = window.complexGame.applyChoice(choice);
+    
+    // 显示结果
+    showComplexResult(choice, endResult);
+    
+    // 更新UI
+    updateComplexUI();
+    
+    // 检查游戏是否结束
+    if (endResult.ended) {
+        showComplexGameOver(endResult);
+    }
+}
+
+// 显示复杂模式选择结果
+function showComplexResult(choice, endResult) {
+    const modal = document.getElementById('result-modal');
+    const icon = document.getElementById('result-icon');
+    const title = document.getElementById('result-title');
+    const text = document.getElementById('result-text');
+    const effectsDiv = document.getElementById('result-effects');
+    const ruleTip = document.getElementById('rule-tip');
+    
+    // 判断选择是否良好
+    const effects = choice.effects;
+    const isGoodChoice = (effects.satisfaction || 0) + (effects.development || 0) + (effects.reputation || 0) - (effects.risk || 0) > 0;
+    
+    if (isGoodChoice) {
+        icon.textContent = '✅';
+        title.textContent = '做得好！';
+        text.textContent = '你的选择产生了积极影响，获得了各方认可。';
+    } else {
+        icon.textContent = '⚠️';
+        title.textContent = '需要注意';
+        text.textContent = '这个选择可能带来一些负面影响，要谨慎考虑。';
+    }
+    
+    // 显示效果
+    effectsDiv.innerHTML = '';
+    const effectNames = {
+        satisfaction: '满意度',
+        development: '发展度',
+        reputation: '声誉',
+        risk: '风险',
+        money: '资金',
+        staff: '员工',
+        projects: '项目',
+        mayor: '与市长关系',
+        secretary: '与秘书关系',
+        media: '与媒体关系',
+        public: '与公众关系'
+    };
+    
+    for (const key in effects) {
+        if (effects[key] !== 0) {
+            const tag = document.createElement('span');
+            const value = effects[key];
+            const isPositive = (key === 'risk') ? value < 0 : value > 0;
+            tag.className = 'effect-tag ' + (isPositive ? 'effect-positive' : 'effect-negative');
+            
+            let displayValue = value;
+            if (key === 'money') {
+                displayValue = (value > 0 ? '+' : '') + formatMoney(Math.abs(value));
+            } else {
+                displayValue = (value > 0 ? '+' : '') + value;
+            }
+            
+            tag.textContent = effectNames[key] + ' ' + displayValue;
+            effectsDiv.appendChild(tag);
+        }
+    }
+    
+    // 隐藏规则提示（复杂模式不使用）
+    ruleTip.style.display = 'none';
+    
+    modal.classList.add('active');
+}
+
+// 关闭结果并继续复杂游戏
+function closeResultAndContinueComplex() {
+    document.getElementById('result-modal').classList.remove('active');
+    showNextComplexEvent();
+}
+
+// 重写关闭结果函数以支持两种模式
+const originalCloseResult = window.closeResultAndContinue;
+window.closeResultAndContinue = function() {
+    if (gameMode === 'complex') {
+        closeResultAndContinueComplex();
+    } else {
+        originalCloseResult();
+    }
+};
+
+// 显示复杂游戏结束
+function showComplexGameOver(endResult) {
+    const report = window.complexGame.generateReport(endResult);
+    
+    document.getElementById('gameover-icon').textContent = endResult.ending === 'good' ? '🎉' : '😔';
+    document.getElementById('gameover-title').textContent = report.title;
+    document.getElementById('gameover-reason').textContent = endResult.reason;
+    
+    const stats = document.getElementById('gameover-stats');
+    stats.innerHTML =
+        '<div class="gameover-stat"><span>最终职位</span><span>' + report.finalLevel.title + '</span></div>' +
+        '<div class="gameover-stat"><span>游戏时长</span><span>' + report.playTime + '</span></div>' +
+        '<div class="gameover-stat"><span>处理事件</span><span>' + report.totalEvents + '个</span></div>' +
+        '<div class="gameover-stat"><span>正确率</span><span>' + report.accuracy + '%</span></div>' +
+        '<div class="gameover-stat"><span>获得成就</span><span>' + report.achievements.length + '个</span></div>';
+    
+    document.getElementById('gameover-modal').classList.add('active');
+}
+
+// 模式切换函数
+function switchToSimpleMode() {
+    if (confirm('确定要切换到简单模式吗？当前进度将会丢失。')) {
+        gameMode = 'simple';
+        startGame('simple');
+    }
+}
+
+function switchToComplexMode() {
+    if (confirm('确定要切换到复杂模式吗？当前进度将会丢失。')) {
+        gameMode = 'complex';
+        startGame('complex');
+    }
+}
+
+// 复杂模式专用成就和仕途显示函数
+function showComplexAchievements() {
+    // 使用复杂游戏的成就数据
+    showAchievements();
+}
+
+function showComplexCareer() {
+    const summary = window.complexGame.getSummary();
+    const levels = window.complexGame.levels;
+    
+    const path = document.getElementById('career-path');
+    path.innerHTML = '';
+    
+    levels.forEach((level, index) => {
+        const isCurrent = index === summary.level.level || index === window.complexGame.state.level;
+        const isUnlocked = index <= (summary.level.level || window.complexGame.state.level);
+        const item = document.createElement('div');
+        item.className = 'career-level ' + (isCurrent ? 'current' : '') + ' ' + (isUnlocked ? '' : 'locked');
+        item.innerHTML = '<div class="career-badge">' + (isUnlocked ? level.badge : '🔒') + '</div>' +
+            '<div class="career-info"><h4>' + level.title + '</h4><p>' + level.position + '</p></div>';
+        path.appendChild(item);
+    });
+    
+    document.getElementById('career-modal').classList.add('active');
+}
+
+// 重写继续游戏函数以支持模式检测
+const originalContinueGame = window.continueGame;
+window.continueGame = function() {
+    // 尝试检测上次的游戏模式
+    const savedMode = localStorage.getItem('gameMode') || 'simple';
+    gameMode = savedMode;
+    
+    if (gameMode === 'complex') {
+        // 这里可以添加复杂游戏的存档加载逻辑
+        showPage('complex-game-page');
+        updateComplexUI();
+        showNextComplexEvent();
+    } else {
+        originalContinueGame();
+    }
+};
+
+// 保存游戏模式
+const originalSaveGame = window.saveGame;
+window.saveGame = function() {
+    if (gameMode === 'simple') {
+        originalSaveGame();
+    }
+    localStorage.setItem('gameMode', gameMode);
+};
+
+// ========== 游戏指导功能 ==========
+
+// 显示游戏指导
+function showGuide() {
+    document.getElementById('guide-modal').classList.add('active');
+    showGuideTab('basic'); // 默认显示基础玩法
+}
+
+// 切换指导页签
+function showGuideTab(tabName) {
+    // 移除所有页签的活跃状态
+    document.querySelectorAll('.guide-tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    document.querySelectorAll('.guide-tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    // 激活选中的页签
+    const tabs = document.querySelectorAll('.guide-tab');
+    const contents = document.querySelectorAll('.guide-tab-content');
+    
+    if (tabName === 'basic') {
+        tabs[0].classList.add('active');
+        document.getElementById('guide-basic').classList.add('active');
+    } else if (tabName === 'complex') {
+        tabs[1].classList.add('active');
+        document.getElementById('guide-complex').classList.add('active');
+    } else if (tabName === 'tips') {
+        tabs[2].classList.add('active');
+        document.getElementById('guide-tips').classList.add('active');
+    }
 }
