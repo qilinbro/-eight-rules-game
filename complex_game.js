@@ -1001,6 +1001,54 @@ const complexEvents = [
             }
         ],
         condition: "public >= 100"
+    },
+    {
+        id: 40,
+        type: "每月正面事件",
+        scene: "📈",
+        title: "日常工作成效",
+        description: "你的日常工作得到了群众和同事的认可，各项指标稳步提升。",
+        choices: [
+            {
+                text: "继续保持良好状态",
+                effects: { satisfaction: 5, development: 3, reputation: 2, money: 20000 },
+                branch: "maintain_good_work"
+            },
+            {
+                text: "进一步提升工作标准",
+                effects: { satisfaction: 8, development: 5, reputation: 5, money: 10000, staff: -1 },
+                branch: "improve_standards"
+            },
+            {
+                text: "适度放松，避免过度劳累",
+                effects: { satisfaction: 3, risk: -3, money: 15000 },
+                branch: "work_life_balance"
+            }
+        ]
+    },
+    {
+        id: 41,
+        type: "每月正面事件",
+        scene: "🌟",
+        title: "工作亮点被发现",
+        description: "上级在检查中发现了你工作的亮点，给予了积极评价。",
+        choices: [
+            {
+                text: "谦虚接受表扬，继续努力",
+                effects: { reputation: 8, satisfaction: 5, mayor: 10, money: 30000 },
+                branch: "humble_praise"
+            },
+            {
+                text: "主动汇报更多工作成果",
+                effects: { reputation: 12, development: 5, mayor: 15, risk: 3, money: 25000 },
+                branch: "proactive_report"
+            },
+            {
+                text: "低调处理，专注工作本身",
+                effects: { satisfaction: 3, risk: -5, money: 20000 },
+                branch: "low_key_work"
+            }
+        ]
     }
 ];
 
@@ -1179,10 +1227,22 @@ class ComplexGameEngine {
             return rewardEvents[Math.floor(Math.random() * rewardEvents.length)];
         }
         
+        // 如果满意度较低，增加正面事件概率
+        const positiveEvents = this.events.filter(event =>
+            event.type === "每月正面事件" ||
+            event.type === "资金获取" ||
+            (event.type === "群众工作" && event.id === 9) ||
+            (event.type === "政策制定" && event.id === 7)
+        );
+        
+        if (this.state.satisfaction < 40 && positiveEvents.length > 0 && Math.random() < 0.4) {
+            return positiveEvents[Math.floor(Math.random() * positiveEvents.length)];
+        }
+        
         // 否则选择普通事件
         const availableEvents = this.events.filter(event => {
-            // 排除奖励事件
-            if (event.condition) return false;
+            // 排除奖励事件和正面事件（已单独处理）
+            if (event.condition || event.type === "每月正面事件") return false;
             
             // 根据分支标记过滤事件
             if (event.requireBranch && !this.state.branchFlags[event.requireBranch]) {
@@ -1235,17 +1295,21 @@ class ComplexGameEngine {
         }
         if (effects.staff) {
             this.state.resources.staff = Math.max(1, this.state.resources.staff + effects.staff);
-            // 员工数量影响工作效率：员工少于5人时，所有属性获得负面影响
+            // 员工数量影响工作效率：员工少于5人时，所有属性获得负面影响（减弱影响）
             if (this.state.resources.staff < 5) {
-                this.state.satisfaction = Math.max(0, this.state.satisfaction - 5);
-                this.state.development = Math.max(0, this.state.development - 5);
-                this.state.reputation = Math.max(0, this.state.reputation - 3);
-                this.state.risk = Math.min(100, this.state.risk + 3);
+                this.state.satisfaction = Math.max(0, this.state.satisfaction - 3);
+                this.state.development = Math.max(0, this.state.development - 3);
+                this.state.reputation = Math.max(0, this.state.reputation - 2);
+                this.state.risk = Math.min(100, this.state.risk + 2);
             }
             // 员工数量超过20人时，获得效率加成
             if (this.state.resources.staff > 20) {
                 this.state.satisfaction = Math.min(100, this.state.satisfaction + 2);
                 this.state.development = Math.min(100, this.state.development + 2);
+            }
+            // 员工数量在10-15人时，获得平衡加成
+            if (this.state.resources.staff >= 10 && this.state.resources.staff <= 15) {
+                this.state.satisfaction = Math.min(100, this.state.satisfaction + 1);
             }
         }
         if (effects.projects) {
@@ -1377,8 +1441,8 @@ class ComplexGameEngine {
             };
         }
         
-        // 满意度过低导致游戏结束
-        if (this.state.satisfaction <= 10) {
+        // 满意度过低导致游戏结束 - 放宽触发条件，增加缓冲机会
+        if (this.state.satisfaction <= 3 && this.state.totalEvents >= 8) {
             return {
                 ended: true,
                 ending: "bad",
